@@ -1,12 +1,9 @@
 import styles from "../styles/Item.module.css";
-//import ItemCard from "./ItemCard";
-
 import { db } from "../firebaseInit";
 import { collection, doc, getDocs, query, orderBy, startAt, endAt } from "firebase/firestore";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import CustomProductContext, { useProductValue } from "../productContext";
-
 import ProductCard from "./ProductCard";
 import { getInitialState, productSelector, SearchFilter } from "./redux/reducers/productReducer";
 
@@ -14,16 +11,14 @@ import { getInitialState, productSelector, SearchFilter } from "./redux/reducers
 
   const dispatch = useDispatch();
   const products = useSelector(productSelector)
-    //const [products, setProducts] = useState([])
-    const [searchText, setSearchText] = useState(""); // Input box text
-    const [selectedCategories, setSelectedCategories] = useState([]); // Checkbox categories
-    const [allProducts, setAllProducts] = useState([]);
-    const [price, setPrice] = useState(15000); // Default price
+  const [searchText, setSearchText] = useState(""); // Input box text
+  const [selectedCategories, setSelectedCategories] = useState([]); // Checkbox categories
+  const [allProducts, setAllProducts] = useState([]);
+  const [price, setPrice] = useState(15000); // Default price
 
-    //const { products, setProducts,fetchProducts} = useProductValue()
     
     useEffect(()=>{        
-      //  fetchProducts()
+    
       dispatch(getInitialState())
       console.log(products)
     },[])
@@ -32,10 +27,10 @@ import { getInitialState, productSelector, SearchFilter } from "./redux/reducers
     useEffect(() => {
       console.log("Dispatching with:", searchText, selectedCategories, price);
       dispatch(SearchFilter({ searchText, selectedCategories, price }));
-  }, [searchText, selectedCategories, price]); // ✅ This ensures updated state is used
+  }, [searchText, selectedCategories, price]); //  This ensures updated state is used
   
 
-      // ✅ Handle Category Selection
+      //  Handle Category Selection
     const handleCheckboxChange = (category) => {
       setSelectedCategories((prev) => {
         const updatedCategories = prev.includes(category)
@@ -43,25 +38,19 @@ import { getInitialState, productSelector, SearchFilter } from "./redux/reducers
             : [...prev, category];
     
         console.log("Updated Categories:", updatedCategories);
-        setSelectedCategories(updatedCategories) // ✅ Logs the correct value
+        setSelectedCategories(updatedCategories) // Logs the correct value
         return updatedCategories;
     });
-    
-     // onFilterChange({ price, categories: selectedCategories });
   };
 
-  // ✅ Handle Price Change
+  // Handle Price Change
   const handlePriceChange = (event) => {
       const newPrice = Number(event.target.value);
       setPrice(newPrice);
   }
-
-
-
-        
+      
   return (
     <div>
-      
       <div className={styles.left_div}>
         <h1> Filter</h1>
          {/* 🔥 Price Slider */}
@@ -77,7 +66,7 @@ import { getInitialState, productSelector, SearchFilter } from "./redux/reducers
                 />
             </div>
 
-            {/* 🔥 Category Filters */}
+            {/* Category Filters */}
             <h3 className="mt-6 text-gray-800 font-semibold text-center">Category</h3>
             <div className="mt-2 flex flex-col gap-2">
                 {["Men's Clothing", "Women's Clothing", "Jewellery", "Electronics"].map((category) => (

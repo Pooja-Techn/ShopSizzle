@@ -5,8 +5,7 @@ function OrderCard({ orders, totalprice, created}) {
 
     return (              
         <div className={styles.itemCard}>
-            <h2>Created On: {created}</h2>
-       
+            <h2>Created On: {created}</h2>       
             <table className={styles.orderTable}>
                 <thead>
                 <tr>
@@ -14,9 +13,7 @@ function OrderCard({ orders, totalprice, created}) {
                         <th>Price</th>
                         <th>Quantity</th>
                         <th>Total Price</th>
-                        </tr>
-                        
-                    
+                        </tr>                    
                 </thead>
                 
                 <tbody>
@@ -39,9 +36,7 @@ function OrderCard({ orders, totalprice, created}) {
                 </tfoot>
             </table>       
         </div>
-    );
-    
-    
+    );  
     
 }
 export default OrderCard;

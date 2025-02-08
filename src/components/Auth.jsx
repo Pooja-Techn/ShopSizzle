@@ -9,28 +9,19 @@ import { getUserID } from './redux/reducers/authenticationReducer';
 
 const Auth = () => {
     const dispatch = useDispatch();
-    // const [email, setEmail] = useState('');
-    // const [password, setPassword] = useState('');
     const navigate = useNavigate();
     const [error, setError] = useState(null);
     const { email, setEmail, password, setPassword, userID, setUserID} = useContext(authenticationContext)
-    //The getAuth function is a part of the Firebase Authentication library,
-//specifically from the firebase/auth module. It is used to obtain an instance of
-//the Auth service, which allows you to interact with Firebase Authentication
-//features.
-
+    
     const auth = getAuth(app);
 
-    
     const handleSignIn = async () => {
         try {
-
             const user = await signInWithEmailAndPassword(auth, email, password);
             setUserID(user.user.uid);
             console.log(user.user.uid)
             console.log('User signed in successfully!');
             navigate('/')
-            
          
         } catch (error) {
             setError(error.message);

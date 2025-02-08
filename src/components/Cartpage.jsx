@@ -8,23 +8,15 @@ import { cartSelector, getCartItems, handleAddOrders, totalPriceSelector } from 
 import { authenticationSelector } from "./redux/reducers/authenticationReducer";
 
 function Cartpage(){
-    //const { cart, setCart,fetchCarts, totalPrice, handleAddOrders} = useProductValue();
+   
     const dispatch = useDispatch();
     const cart = useSelector(cartSelector)
     const userID = useSelector(authenticationSelector)
     const totalPrice = useSelector(totalPriceSelector)
     useEffect(()=>
     {
-        // const fetchItem =async()=>{
-        //  const cartItems = await fetchCarts()
-        // setCart(cartItems)       
-        // console.log(cart)
-        // }
-        // fetchItem();
         dispatch(getCartItems({userID}))
-}
-
-    ,[])
+    } ,[])
         
     return (
         <div>

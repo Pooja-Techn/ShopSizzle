@@ -165,12 +165,7 @@ export const handleAdd = createAsyncThunk("product/handleAdd", async({userID, na
 {
   
         try {
-            // if (userID === "") {
-            //     setCart([])
-            //   console.log("uid doesn't exist")
-            //   return
-            // }
-  
+           
           //Check if cart item already exist    
           const docRef = collection(db, `userCarts/${userID}/myCarts`)
   
@@ -204,18 +199,12 @@ export const handleAdd = createAsyncThunk("product/handleAdd", async({userID, na
               Quantity: 1
             })
             return newcart
-  
           }
-  
-       
   
         }  
         catch (err) {
           console.log(err)
         }
-     
-
-
 })
 
 export const handleRemove = createAsyncThunk("product/handleRemove", async({userID, name, price, imageurl}, thunkAPI) =>  
@@ -271,14 +260,7 @@ export const handleRemove = createAsyncThunk("product/handleRemove", async({user
 
       }
 
-      //const cartI tems = await fetchCarts()
-      //if(cartItems.length){
-      //setCart(cartItems)
-      //}
-      //else{
-       // setCart([])
-      //}
-     // console.log(cart)
+    
     }
     catch (err) {
       console.log(err)
@@ -287,9 +269,7 @@ export const handleRemove = createAsyncThunk("product/handleRemove", async({user
 )
 
 export const handleAddOrders = createAsyncThunk("product/handleAddOrders", async({userID, totalPrice, cart}, thunkAPI) =>   
-    {
-      
-      
+    {      
             if (userID === "") {
                // setCart([])
               console.log("uid doesn't exist")
@@ -321,9 +301,7 @@ export const handleAddOrders = createAsyncThunk("product/handleAddOrders", async
                     const totalPrice = quantity*price
                     const order = {name, price, quantity, totalPrice}
                      ordersobj = [...ordersobj, order]
-
                   })
-
 
                 //add cart item to myCarts collection exist with userCarts
                 const orderItem = await addDoc(orderCollectionRef, {
@@ -342,27 +320,12 @@ export const handleAddOrders = createAsyncThunk("product/handleAddOrders", async
                thunkAPI.getOrders({ userID})
 
                 return orderItem
-
-      
-            //   const orderItems = await fetchOrders()
-            //   if(orderItems.length){
-            //   //setOrders(orderItems)
-            //   }
-            //   else{
-            //     setOrders([])
-            //   }
-            //   console.log(orders)
-             }
-      
+             }     
       
             catch (err) {
               console.log(err)
               return []
-            }
-          
-         
-    
-    
+            }         
     })
 
 export const handleReset = createAsyncThunk("product/handleReset", async({userID, name}, thunkAPI) =>  
@@ -385,13 +348,7 @@ export const handleReset = createAsyncThunk("product/handleReset", async({userID
 
             const deletedoc = getDoc(cartItemRef)
             return deletedoc
-        //     const cartItems = await fetchCarts()
-        //      if(cartItems.length){
-        //     setCart(cartItems)
-        //     }
-        //     else{
-        //     setCart([])
-        // }
+     
         }
         else{
             console.log("Cart item doesn't exist")

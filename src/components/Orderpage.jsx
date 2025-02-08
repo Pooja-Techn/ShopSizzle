@@ -12,16 +12,8 @@ function Orderpage() {
   const orders = useSelector(orderSelector)
   const totalPrice = useSelector(totalPriceSelector)
 
-    //const {fetchOrders, setOrders, orders} = useProductValue();
-
     useEffect(()=>
         {
-            // const fetchItem =async()=>{
-            // const cartItems = await fetchOrders()
-            // setOrders(cartItems)       
-            // console.log(cartItems)
-            // }
-            // fetchItem();
             dispatch(getOrders({userID}))
     }  ,[])
 

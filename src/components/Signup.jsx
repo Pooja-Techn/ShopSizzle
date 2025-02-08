@@ -12,28 +12,10 @@ const Signup = () => {
    const [error, setError] = useState(null);
     const dispatch = useDispatch()
     const {email, setEmail, password, setPassword} = useContext(authenticationContext)
-    //The getAuth function is a part of the Firebase Authentication library,
-//specifically from the firebase/auth module. It is used to obtain an instance of
-//the Auth service, which allows you to interact with Firebase Authentication
-//features.
-
-   
-
-    // const handleSignUp = async () => {
-    //     try {
-            
-    //         await createUserWithEmailAndPassword(auth, email, password);
-    //         console.log('User signed up successfully!');
-    //     } catch (error) {
-    //         setError(error.message);
-    //     }
-    // };
-   
-    return (
-        <div>
-        
-        <div className={styles.register_page}>
       
+    return (
+        <div>        
+        <div className={styles.register_page}>      
             <div className={styles.registerpage_container}>
             <h1> Sign Up</h1>
           <input type="text" placeholder="Name"  />

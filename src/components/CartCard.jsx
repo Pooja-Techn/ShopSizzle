@@ -10,9 +10,6 @@ function CartCard({id, name, price, imageurl, quantity})
   const dispatch = useDispatch()
   const userID = useSelector(authenticationSelector)
 
-//const {handleAdd, cart, setCart, handleRemove, handleReset} = useProductValue();
-
-
     return (  
         <div className={styles.itemCard} >
           <div className={styles.imagecontainerdiv}>

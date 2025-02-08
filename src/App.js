@@ -9,15 +9,10 @@ import Signup from './components/Signup';
 import Home from './components/Home';
 import Cartpage from './components/Cartpage';
 import Orderpage from './components/Orderpage';
-//import { CustomAuthenticationContext } from './authenticationContext';
-
 
 function App() {
- // const [total, setTotal] = useState(0);
- // const [item, setItem] = useState(0);
 
-
-//create routes
+  //create routes
 const routes = createBrowserRouter([
   {
     path:"/", element: <Navbar/>, children:
@@ -33,7 +28,6 @@ const routes = createBrowserRouter([
  
   return (
     <>
-    
     <Provider store={store}>
      <RouterProvider router={routes}/>
      </Provider>
