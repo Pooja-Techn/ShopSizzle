@@ -25,7 +25,7 @@ function Navbar() {
       <authenticationContext.Provider value={{email, setEmail, password, setPassword}} >
     <div className={styles.container}>
     
-      <h1> Busy Buy</h1>
+      <h1> ShopSizzle</h1>
       <div></div><div></div>
       <div>
       <NavLink to="/" style={{color: "white"}}><button className={stylesnew.itemButton}>Home</button> </NavLink>
