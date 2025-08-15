@@ -1,5 +1,6 @@
 import { useContext, useEffect } from "react";
 import styles from "../styles/Item.module.css";
+import Loginstyles from  "../styles/LoginPage.module.css";
 import { useProductValue } from "../productContext";
 import CartCard from "./CartCard";
 import { NavLink } from "react-router-dom";
@@ -22,7 +23,7 @@ function Cartpage(){
         <div>
                {totalPrice!==0?<>
                 <div className={styles.left_div}><h1> {totalPrice}</h1>
-             <NavLink to="/myorders"> <button className={styles.itemButton} onClick={()=> { dispatch(handleAddOrders({userID, totalPrice,cart  }))}} >Purchase</button></NavLink></div>    </>
+             <NavLink to="/myorders"> <button className={Loginstyles.SignInButton} onClick={()=> { dispatch(handleAddOrders({userID, totalPrice,cart  }))}} >Purchase</button></NavLink></div>    </>
               :undefined}    
         <div className={styles.wrapper_div}>
 

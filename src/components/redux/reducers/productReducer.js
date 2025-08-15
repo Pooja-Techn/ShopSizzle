@@ -15,6 +15,7 @@ const initialState =
 //get products
 export const getInitialState = createAsyncThunk("product/getInitialState",  async(arg, thunkAPI)=>
 {
+  try{
     console.log("enter in getinitialstate")
     const querySnapshot = await getDocs(collection(db, "products"));
     const productsArray =  querySnapshot.docs.map((doc) => ({
@@ -24,6 +25,12 @@ export const getInitialState = createAsyncThunk("product/getInitialState",  asyn
       console.log(productsArray)
       // thunkAPI.dispatch(actions.setInitialState(productsArray))
       return productsArray
+    }
+    catch(error)
+    {
+      console.error("Error fetching products:", error);
+      return [];
+    }
 
     })
 //get cart items
@@ -168,6 +175,7 @@ export const handleAdd = createAsyncThunk("product/handleAdd", async({userID, na
            
           //Check if cart item already exist    
           const docRef = collection(db, `userCarts/${userID}/myCarts`)
+          console.log(userID)
   
           //Step1: Check if product exist in the cart
           const q = query(docRef, where("Name", "==", name));
@@ -186,7 +194,7 @@ export const handleAdd = createAsyncThunk("product/handleAdd", async({userID, na
             console.log("Quantity updated for:", name);
             console.log(existcart)
             thunkAPI.dispatch(getCartItems({userID}))
-            return existcart
+            return existcart.data()
           }
   
           else {
@@ -198,7 +206,9 @@ export const handleAdd = createAsyncThunk("product/handleAdd", async({userID, na
               ImageUrl: imageurl,
               Quantity: 1
             })
-            return newcart
+            const newcartdata = await getDoc(newcart);
+            console.log("New cart item added:", newcartdata.data());
+            return newcartdata.data()
           }
   
         }  
@@ -235,9 +245,9 @@ export const handleRemove = createAsyncThunk("product/handleRemove", async({user
           Quantity: cartItemDoc.data().Quantity - 1
         })
         console.log("Quantity updated for:", name);
-        const updatedoc = getDoc(cartItemRef)
+        const updatedoc = await getDoc(cartItemRef)
         thunkAPI.dispatch(getCartItems({userID}))
-        return updatedoc
+        return updatedoc.data()
         
       }
       else{
@@ -245,7 +255,7 @@ export const handleRemove = createAsyncThunk("product/handleRemove", async({user
         await deleteDoc(cartItemRef)
         const deletedoc = getDoc(cartItemRef)
         thunkAPI.dispatch(getCartItems({userID}))
-        return deletedoc
+        return (await deletedoc).data
 
       }
   }
@@ -257,6 +267,7 @@ export const handleRemove = createAsyncThunk("product/handleRemove", async({user
           ImageUrl: imageurl,
           Quantity: 1
         })
+        return (await getDoc(docRef)).data;
 
       }
 
@@ -317,11 +328,11 @@ export const handleAddOrders = createAsyncThunk("product/handleAddOrders", async
                 const deletePromises = querySnapshot.docs.map((doc) => deleteDoc(doc.ref));
                 await Promise.all(deletePromises);
 
-               thunkAPI.getOrders({ userID})
+               await thunkAPI.dispatch(getOrders({ userID}))
 
-                return orderItem
-             }     
-      
+                return (await getDoc(orderItem)).data()
+             }
+
             catch (err) {
               console.log(err)
               return []
@@ -346,8 +357,8 @@ export const handleReset = createAsyncThunk("product/handleReset", async({userID
             await deleteDoc(cartItemRef);
             thunkAPI.dispatch(getCartItems({userID}))
 
-            const deletedoc = getDoc(cartItemRef)
-            return deletedoc
+            const deletedoc = await getDoc(cartItemRef)
+            return deletedoc.data()
      
         }
         else{

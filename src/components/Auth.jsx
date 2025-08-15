@@ -28,19 +28,37 @@ const Auth = () => {
         }
     };
     return (
-        <div className={styles.register_page}>
-            <div className={styles.registerpage_container}>
+  <div className={styles.register_page}>
+    <div className={styles.registerpage_container}>
+      <input
+        className={styles.inputBox}
+        type="text"
+        placeholder="Email"
+        onChange={(e) => setEmail(e.target.value)}
+      />
+      <input
+        className={styles.inputBox}
+        type="password"
+        placeholder="Password"
+        onChange={(e) => setPassword(e.target.value)}
+      />
+      <NavLink to="/">
+        <button
+          className={styles.signInBtn}
+          onClick={() => {
+            dispatch(getUserID({ email, password }));
+          }}
+        >
+          Sign In
+        </button>
+      </NavLink>
+      <NavLink to="/signup" className={styles.signupLink}>
+        Or Signup instead
+      </NavLink>
+      {error && <p className={styles.errorMsg}>{error}</p>}
+    </div>
+  </div>
+);
 
-          
-            <input type="text" placeholder="Email" onChange={(e) =>
-                setEmail(e.target.value)} />
-            <input type="password" placeholder="Password" onChange={(e) =>
-                setPassword(e.target.value)} />
-          <NavLink to="/"><button onClick={()=> {dispatch(getUserID({email, password}))}}>Sign In</button> </NavLink>
-            <NavLink to="/signup">Or Signup instead </NavLink>
-            {error && <p>{error}</p>}
-        </div>
-        </div>
-    );
 };
 export default Auth;

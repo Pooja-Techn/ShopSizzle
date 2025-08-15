@@ -4,7 +4,7 @@ import styles from "../styles/Item.module.css";
 function OrderCard({ orders, totalprice, created}) {   
 
     return (              
-        <div className={styles.itemCard}>
+        <div className={styles.itemCard} >
             <h2>Created On: {created}</h2>       
             <table className={styles.orderTable}>
                 <thead>
@@ -17,8 +17,8 @@ function OrderCard({ orders, totalprice, created}) {
                 </thead>
                 
                 <tbody>
-                    {orders.map((order) => (
-                        <tr key={order.id}>
+                    {orders.map((order, index) => (
+                        <tr key={order.id || index }>
                             <td>{order.name}</td>
                             <td>&#x20B9; {order.price}</td>
                             <td>{order.quantity}</td>

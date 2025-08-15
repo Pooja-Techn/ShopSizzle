@@ -70,7 +70,7 @@ import { getInitialState, productSelector, SearchFilter } from "./redux/reducers
             <h3 className="mt-6 text-gray-800 font-semibold text-center">Category</h3>
             <div className="mt-2 flex flex-col gap-2">
                 {["Men's Clothing", "Women's Clothing", "Jewellery", "Electronics"].map((category) => (
-                    <div>
+                    <div key={category}>
                     <label key={category} className="flex items-center space-x-2">
                         <input
                             type="checkbox"

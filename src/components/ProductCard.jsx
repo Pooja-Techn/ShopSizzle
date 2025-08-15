@@ -11,6 +11,7 @@ import { authenticationSelector } from "./redux/reducers/authenticationReducer";
 function ProductCard({ id, name, price, imageurl }) {
   const dispatch = useDispatch()
   const userID = useSelector(authenticationSelector)
+  
 
   return (
     <div className={styles.itemCard} >

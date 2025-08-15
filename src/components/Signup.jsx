@@ -18,12 +18,12 @@ const Signup = () => {
         <div className={styles.register_page}>      
             <div className={styles.registerpage_container}>
             <h1> Sign Up</h1>
-          <input type="text" placeholder="Name"  />
-            <input type="text" placeholder="Email" onChange={(e) =>
+          <input type="text" placeholder="Name"  className={styles.inputBox} />
+            <input type="text" placeholder="Email" className={styles.inputBox} onChange={(e) =>
                 setEmail(e.target.value)} />
-            <input type="password" placeholder="Password" onChange={(e) =>
+            <input type="password" placeholder="Password" className={styles.inputBox} onChange={(e) =>
                 setPassword(e.target.value)} />
-          <button onClick={()=>{dispatch(signUp({email,password}))}}>Sign Up</button>
+          <button className={styles.signInBtn} onClick={()=>{dispatch(signUp({email,password}))}}>Sign Up</button>
                       {error && <p>{error}</p>}
         </div>
         </div>

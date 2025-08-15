@@ -18,11 +18,11 @@ function Orderpage() {
     }  ,[])
 
     return (
-        <div>           
+        <div key={userID}>           
         <div className={styles.wrapper_div_order}>
-         { orders.length>0? orders.map((od) => (<>          
-            <OrderCard orders={od.Orders} totalprice={od.TotalPrice} created={od.createdOn}/>
-            </>
+         { orders && orders.length>0? orders.map((od) => (         
+            <OrderCard key={od.id} orders={od.Orders} totalprice={od.TotalPrice} created={od.createdOn}/>
+            
           )
           //here have to add <h1></h1>
          ): <h1> No Orders Placed</h1>
